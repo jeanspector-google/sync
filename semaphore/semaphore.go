@@ -99,6 +99,7 @@ func (s *Weighted) Release(n int64) {
 	s.mu.Lock()
 	s.cur -= n
 	if s.cur < 0 {
+		s.cur = 0
 		s.mu.Unlock()
 		panic("semaphore: released more than held")
 	}
